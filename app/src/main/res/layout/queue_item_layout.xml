@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativeLayout">
+
+    <RelativeLayout
+        android:tag="reveal-right"
+        android:background="#616161"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_conversion_absoluteHeight="80dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_conversion_absoluteWidth="411dp">
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:tag="reveal-left"
+        android:background="#b71c1c"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_conversion_absoluteHeight="80dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_conversion_absoluteWidth="411dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:tint="#FFFFFF"
+            android:src="@mipmap/ic_delete_white_24dp"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:tag="front"
+        android:id="@+id/frontLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:background="#FFFFEF"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        tools:layout_conversion_absoluteHeight="80dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_conversion_absoluteWidth="411dp">
+
+        <ImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/person_photo"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight = "16dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/acm"
+            app:srcCompat="@mipmap/acm" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginStart="56dp"
+            android:layout_marginLeft="56dp"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/title_text"
+                android:layout_alignParentTop="true"
+                android:text="Lapsley - Love is Blind"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                android:layout_marginBottom="4dp"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/playerText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title_text"
+                android:text="player"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

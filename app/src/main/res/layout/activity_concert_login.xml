@@ -1,0 +1,58 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingLeft="12dp"
+    android:paddingTop="32dp"
+    android:paddingRight="12dp"
+    android:paddingBottom="12dp">
+
+    <Button
+        android:id="@+id/button"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="login"
+        app:layout_constraintTop_toBottomOf="@id/rememberBox"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <CheckBox
+        android:id="@+id/rememberBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:checked="true"
+        android:text="login"
+        app:layout_constraintEnd_toEndOf="@id/passwordEdit"
+        app:layout_constraintTop_toBottomOf="@id/passwordEdit"
+        />
+
+    <EditText
+        android:id="@+id/userEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="netid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <EditText
+        android:id="@+id/passwordEdit"
+        android:inputType="textPassword"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintStart_toStartOf="@id/userEdit"
+        app:layout_constraintTop_toBottomOf="@id/userEdit"
+        android:hint="password"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
