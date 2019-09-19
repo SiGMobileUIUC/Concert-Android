@@ -25,39 +25,26 @@ import io.socket.emitter.Emitter;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private MainActivityViewModel viewModel = new MainActivityViewModel();
-    private Socket mSocket;
-    private ConcertStatus currStatus;
 
-    {
-        try {
-            mSocket = IO.socket("https://concert.acm.illinois.edu/");
-        } catch (URISyntaxException e) {
-
-        }
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //DataBinding
         ActivityMainBinding viewDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         viewDataBinding.setOnClickListener(this);
-
-        //init
-        currStatus = new ConcertStatus();
-
-        //init socket
-        mSocket.connect();
-        try {
-            mSocket = IO.socket("https://concert.acm.illinois.edu/");
-        } catch (URISyntaxException e) {
-
-        }
+        viewDataBinding.setViewModel(viewModel);
 
         // Setup Listeners
-        mSocket.on("connected", connected_callback);
-        mSocket.on("heartbeat", connected_callback);
-        mSocket.on("played", connected_callback);
-        mSocket.on("volume_changed", volume_callback );
-        mSocket.on("paused", pause_callback);
+        viewModel.getmSocket().on("connected", viewModel.connected_callback);
+        viewModel.getmSocket().on("heartbeat", viewModel.connected_callback);
+        viewModel.getmSocket().on("played", viewModel.connected_callback);
+        viewModel.getmSocket().on("volume_changed", viewModel.volume_callback);
+        viewModel.getmSocket().on("paused", viewModel.pause_callback);
+
+        //init
+        viewModel.getmSocket().connect();
+        viewModel.currentSong.setValue("no song playing");
 
         //hide title
         if (getSupportActionBar() != null)
@@ -65,67 +52,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             getSupportActionBar().hide();
         }
     }
-
-    private final Emitter.Listener connected_callback = new Emitter.Listener() {
-        @Override
-        public void call(Object... args) {
-
-            final ConcertStatus status;
-
-            if (args.length > 1) {
-                status = new ConcertStatus((String) args[1]);
-            } else {
-                status = new ConcertStatus((String) args[0]);
-            }
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    //updateUI(status);
-                }
-            });
-        }
-    };
-
-    private final Emitter.Listener volume_callback = new Emitter.Listener() {
-        @Override
-        public void call(Object... args) {
-            try {
-                JSONObject jsonObject = new JSONObject((String) args[0]);
-                currStatus.setVolume(jsonObject.getInt("volume"));
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-
-                    }
-                });
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    };
-
-    private final Emitter.Listener pause_callback = new Emitter.Listener() {
-        @Override
-        public void call(Object... args) {
-            for (Object arg : args) {
-                Log.e("PAUSE", (String) arg);
-            }
-            try {
-                JSONObject jsonObject = new JSONObject((String) args[0]);
-                currStatus.setAudioStatus(jsonObject.getString("audio_status"));
-                currStatus.setCurrentTime(jsonObject.getInt("current_time"));
-                currStatus.setDuration(jsonObject.getInt("duration"));
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run(){
-
-                    }
-                });
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    };
 
     @Override
     public void onClick(View view) {
@@ -136,13 +62,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         }
 
+        if (view.getId() == R.id.playButton) {
+            Log.e("Info",viewModel.getConcertStatus().toString());
+        }
+
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mSocket.off();
-        mSocket.close();
+        viewModel.getmSocket().off();
+        viewModel.getmSocket().close();
     }
 
 }

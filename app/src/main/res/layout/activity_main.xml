@@ -11,6 +11,10 @@
             name="onClickListener"
             type="android.view.View.OnClickListener"/>
 
+        <variable
+            name="viewModel"
+            type="com.example.concert_android.MainActivityViewModel" />
+
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -40,34 +44,40 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_centerHorizontal="true"
+        android:enabled="true"
         android:background="@mipmap/ic_play_arrow_black_24dp"
         app:layout_constraintBottom_toTopOf="@+id/bt_login"
         app:layout_constraintEnd_toStartOf="@+id/nextButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sb_progress_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/sb_progress_bar"
+        android:onClick="@{onClickListener}"/>
 
     <Button
         android:id="@+id/queueButton"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="@mipmap/ic_queue_music_black_24dp"
+        android:enabled="true"
         app:layout_constraintBottom_toTopOf="@+id/bt_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/nextButton"
-        app:layout_constraintTop_toBottomOf="@+id/sb_progress_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/sb_progress_bar"
+        android:onClick="@{onClickListener}"/>
 
     <Button
         android:id="@+id/nextButton"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="@mipmap/ic_skip_next_black_24dp"
+        android:enabled="true"
         app:layout_constraintBottom_toTopOf="@+id/bt_login"
         app:layout_constraintEnd_toStartOf="@+id/queueButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/playButton"
-        app:layout_constraintTop_toBottomOf="@+id/sb_progress_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/sb_progress_bar"
+        android:onClick="@{onClickListener}"/>
 
     <ImageView
         android:id="@+id/iv_cover"
@@ -98,7 +108,7 @@
         android:id="@+id/tv_song_name"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:text="current song"
+        android:text="@{viewModel.currentSong}"
         app:layout_constraintBottom_toTopOf="@id/sb_progress_bar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
