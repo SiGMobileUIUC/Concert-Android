@@ -1,8 +1,8 @@
 TODO:
--analyze iOS app for structure and implementions specifics
--make socket in Java
--Make xml files for page
--decide page layout
--figure libraries for app
--figure features supported by the server and what else we want (if anything)
--get access to acm concert website and app
+-Create basic UI for selecting Songs
+  -Create activity for searching songs
+    -Search editText for displaying a list of songs to select from
+  -Create activity for viewing song info
+    -play button, pause button, skip button, album art imageView
+  -Create activity for login screen
+    -username editText, password editText, login button
